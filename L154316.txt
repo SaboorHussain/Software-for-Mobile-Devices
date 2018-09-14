@@ -1,0 +1,158 @@
+// Abstract Class
+
+abstract class Footballer
+{
+    String Name;
+    int Age;
+    String Country;
+    String Type;
+    String Club;
+    int Goals;
+    int Assists;
+    
+//Non Abstract Method
+
+    public Footballer(String Name, int Age, String Country, String Type , String Club,int Goals, int Assists)
+    {
+        this.Name = Name;
+        this.Age = Age;
+        this.Country = Country;
+        this.Type = Type;
+        this.Club = Club;
+        this.Goals = Goals;
+        this.Assists = Assists;
+    }
+    
+    public void ClubChanged(String Name, String NewClub )
+    {
+        this.Club = NewClub;
+    }
+    
+    public void AddGoal()
+    {
+        this.Goals = this.Goals + 1; 
+    }
+    
+    public void AddAssist()
+    {
+        this.Assists = this.Assists + 1; 
+    }
+    
+//Abstract Method
+
+    public abstract void Jump();
+    
+}    
+//Interfaces
+
+    interface Midfielder
+    {
+        public abstract void ShortPass();
+        public abstract void LongPass();
+    }
+    
+    interface Attacker
+    {
+        public abstract void Kick();
+        public abstract void Header();
+    }
+    
+//Centeral Attacking Midfielder    
+class CAM extends Footballer implements Midfielder, Attacker {
+    
+//Non Static Inner Class 
+
+    class CAM_Skills
+    {
+        int HitPower;
+        int DribbleTime;
+        int SprintSpeed;
+        
+        
+        public void increaseHitPower()
+        {
+            HitPower = HitPower + 10; 
+        }
+        
+        public void increaseSprintSpeed()
+        {
+            SprintSpeed = SprintSpeed + 10; 
+        }
+        
+    }
+    
+    
+    CAM(String Name, int Age, String Country, String Type , String Club, int Goals, int Assists)
+    {
+        super( Name, Age, Country, Type, Club, Goals, Assists);
+    }
+    
+//static Nested Class
+
+    static class All_CAM_Players
+    {
+        String[] list;
+        int MAXCAMPLAYERS = 3;
+        
+        All_CAM_Players()
+        {
+            list = new String [MAXCAMPLAYERS];
+        }
+         
+         
+        public void PrintList()
+        {
+            System.out.println("Currently Centeral Attacking Midfielders in the team are\n");
+            
+            for(int i = 0; i < MAXCAMPLAYERS;i++)
+                System.out.println(list[i]+"\n");
+        }
+        
+        public void AddPlayer(String name, int i )
+        {
+            list[i-1] = name;
+            System.out.println(name + " Added\n");
+        }
+        
+    }
+    
+    public void ShortPass()
+    {
+        System.out.println("Short Pass Made\n");
+    }
+    public void LongPass()
+    {
+        System.out.println("Long Pass Made\n");
+    }
+    public void Kick()
+    {
+        System.out.println("Kicked on the goal\n");
+    }
+    public void Header()
+    {
+        System.out.println("Header made\n");
+    }
+    public void Jump()
+    {
+        System.out.println("Player Jumped\n");
+    }
+}
+
+public class MainMethod
+{
+    public static void main (String[] args)
+    {
+        CAM PaulPogba = new CAM("Paul Pogba" , 24 ,"France" , "CAM", "FCB", 50, 43 );
+        
+        PaulPogba.Kick();
+        PaulPogba.Header();
+        PaulPogba.LongPass();
+        PaulPogba.Jump();
+        
+        CAM.All_CAM_Players list = new CAM.All_CAM_Players();
+        list.AddPlayer("Messi",1);
+        list.AddPlayer("Ronaldo",2);
+        list.AddPlayer("Mbappe",3);
+        list.PrintList();
+    }
+}    

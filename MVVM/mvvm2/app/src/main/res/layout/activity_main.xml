@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="login"
+            type="com.example.saboorhussain.mvvm2.viewmodel.UserModel" />
+        <variable
+            name="userloginevent"
+            type="com.example.saboorhussain.mvvm2.interfaces.userlogin" />
+
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/etemailid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/White"
+        android:hint="@{login.emailhint}"
+        android:text="@{login.email}"
+        />
+    <EditText
+        android:id="@+id/etpasswordid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/White"
+        android:hint="@{login.passwordhint}"
+        android:text="@{login.password}"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="@{(v)->userloginevent.onClickLogin()}"
+        />
+</LinearLayout>
+</layout>
